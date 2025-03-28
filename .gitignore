@@ -330,3 +330,5 @@ ASALocalRun/
 .mfractor/
 
 .idea
+
+.DS_Store
