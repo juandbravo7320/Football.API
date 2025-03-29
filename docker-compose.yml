@@ -1,0 +1,31 @@
+﻿services:
+  football.api:
+    image: ${DOCKER_REGISTRY-}footballapi
+    container_name: Football.Api
+    build:
+      context: .
+      dockerfile: src/API/FootballAPI/Dockerfile
+    ports:
+      - 8000:8080
+      - 8001:8081
+
+  football.database:
+    image: postgres:latest
+    container_name: Football.Database
+    environment:
+      - POSTGRES_DB=football
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./.containers/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  football.seq:
+    image: datalust/seq:latest
+    container_name: Football.Seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:5341
+      - 8081:80

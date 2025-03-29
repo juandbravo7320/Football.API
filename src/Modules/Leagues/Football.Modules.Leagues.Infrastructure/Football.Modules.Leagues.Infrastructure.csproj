@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Common\Football.Common.Infrastructure\Football.Common.Infrastructure.csproj" />
+      <ProjectReference Include="..\Football.Modules.Leagues.Application\Football.Modules.Leagues.Application.csproj" />
+      <ProjectReference Include="..\Football.Modules.Leagues.Presentation\Football.Modules.Leagues.Presentation.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Database\Migrations\" />
+    </ItemGroup>
+
+</Project>

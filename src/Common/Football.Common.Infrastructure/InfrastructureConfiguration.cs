@@ -1,4 +1,6 @@
-﻿using Football.Common.Application.Data;
+﻿using Football.Common.Application.Clock;
+using Football.Common.Application.Data;
+using Football.Common.Infrastructure.Clock;
 using Football.Common.Infrastructure.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -16,6 +18,8 @@ public static class InfrastructureConfiguration
         services.TryAddSingleton(npgsqlDataSource);
 
         services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+        
+        services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         return services;
     }

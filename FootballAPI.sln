@@ -21,6 +21,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Football.Common.Infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Football.Common.Presentation", "src\Common\Football.Common.Presentation\Football.Common.Presentation.csproj", "{C2206B5E-DE73-417F-A41A-37BA461B46DC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Leagues", "Leagues", "{3EF725A5-F21F-47E0-9F48-9363A1FD5F04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Football.Modules.Leagues.Domain", "src\Modules\Leagues\Football.Modules.Leagues.Domain\Football.Modules.Leagues.Domain.csproj", "{DC033AEB-3B42-46A2-A239-D05301F77C97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Football.Modules.Leagues.Application", "src\Modules\Leagues\Football.Modules.Leagues.Application\Football.Modules.Leagues.Application.csproj", "{3947FCB6-729C-461A-93C9-52383662D109}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Football.Modules.Leagues.Infrastructure", "src\Modules\Leagues\Football.Modules.Leagues.Infrastructure\Football.Modules.Leagues.Infrastructure.csproj", "{91ECD94A-81AE-4B10-9D23-264BAAC7EDA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Football.Modules.Leagues.Presentation", "src\Modules\Leagues\Football.Modules.Leagues.Presentation\Football.Modules.Leagues.Presentation.csproj", "{80CE2827-50EE-4B3D-B22C-8FAF993A1942}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1F91FD43-E166-4EA2-BFD2-B9F998A90F19}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +62,22 @@ Global
 		{C2206B5E-DE73-417F-A41A-37BA461B46DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2206B5E-DE73-417F-A41A-37BA461B46DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2206B5E-DE73-417F-A41A-37BA461B46DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC033AEB-3B42-46A2-A239-D05301F77C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC033AEB-3B42-46A2-A239-D05301F77C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC033AEB-3B42-46A2-A239-D05301F77C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC033AEB-3B42-46A2-A239-D05301F77C97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3947FCB6-729C-461A-93C9-52383662D109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3947FCB6-729C-461A-93C9-52383662D109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3947FCB6-729C-461A-93C9-52383662D109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3947FCB6-729C-461A-93C9-52383662D109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91ECD94A-81AE-4B10-9D23-264BAAC7EDA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91ECD94A-81AE-4B10-9D23-264BAAC7EDA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91ECD94A-81AE-4B10-9D23-264BAAC7EDA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91ECD94A-81AE-4B10-9D23-264BAAC7EDA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80CE2827-50EE-4B3D-B22C-8FAF993A1942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80CE2827-50EE-4B3D-B22C-8FAF993A1942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80CE2827-50EE-4B3D-B22C-8FAF993A1942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80CE2827-50EE-4B3D-B22C-8FAF993A1942}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,5 +94,10 @@ Global
 		{51C91A76-64BD-4300-894E-728204E22FBC} = {22D87D9B-40B2-4A31-8F6C-55E9390D2EAD}
 		{7B5DDA20-C756-44CD-8029-892F80BF7FF0} = {22D87D9B-40B2-4A31-8F6C-55E9390D2EAD}
 		{C2206B5E-DE73-417F-A41A-37BA461B46DC} = {22D87D9B-40B2-4A31-8F6C-55E9390D2EAD}
+		{3EF725A5-F21F-47E0-9F48-9363A1FD5F04} = {0FFDA33D-5D68-4068-BAD1-456908AA618E}
+		{DC033AEB-3B42-46A2-A239-D05301F77C97} = {3EF725A5-F21F-47E0-9F48-9363A1FD5F04}
+		{3947FCB6-729C-461A-93C9-52383662D109} = {3EF725A5-F21F-47E0-9F48-9363A1FD5F04}
+		{91ECD94A-81AE-4B10-9D23-264BAAC7EDA5} = {3EF725A5-F21F-47E0-9F48-9363A1FD5F04}
+		{80CE2827-50EE-4B3D-B22C-8FAF993A1942} = {3EF725A5-F21F-47E0-9F48-9363A1FD5F04}
 	EndGlobalSection
 EndGlobal

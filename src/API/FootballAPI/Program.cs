@@ -1,51 +1,54 @@
-using FootballAPI;
-using Microsoft.EntityFrameworkCore;
+using Football.Common.Application;
+using Football.Common.Infrastructure;
+using Football.Common.Presentation.Endpoints;
+using Football.Modules.Leagues.Infrastructure;
+using FootballAPI.Extensions;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-static void CreateDbIfNotExists(IHost host)
+builder.Services.AddSwaggerGen(options =>
 {
-    using (var scope = host.Services.CreateScope())
-    {
-        var services = scope.ServiceProvider;
-        try
-        {
-            var context = services.GetRequiredService<FootballContext>();
-            DbInitializer.Initialize(context);
-        }
-        catch (Exception ex)
-        {
-            var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "An error occurred creating the DB.");
-        }
-    }
-}
+    options.CustomSchemaIds(t => t.FullName?.Replace("+", "."));
+});
 
-builder.Services.AddDbContext<FootballContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddApplication([
+    Football.Modules.Leagues.Application.AssemblyReference.Assembly
+]);
+
+var databaseConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
+
+builder.Services.AddInfrastructure(databaseConnectionString);
+
+builder.Configuration.AddModuleConfiguration(["leagues"]);
+
+builder.Services.AddLeaguesModule(builder.Configuration);
 
 var app = builder.Build();
-
 
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Football API");
+        c.RoutePrefix = "";
+    });
+    
+    app.ApplyMigrations();
 }
+
+app.MapEndpoints();
+
+app.UseSerilogRequestLogging();
 
 app.UseAuthorization();
 
-app.MapControllers();
-
-CreateDbIfNotExists(app);
-
-app.Run();
+await app.RunAsync().ConfigureAwait(true);

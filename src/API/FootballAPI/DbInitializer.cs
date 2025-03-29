@@ -1,4 +1,5 @@
-﻿using FootballAPI.Models;
+﻿/*
+using FootballAPI.Models;
 
 namespace FootballAPI
 {
@@ -48,3 +49,4 @@ namespace FootballAPI
         }
     }
 }
+*/

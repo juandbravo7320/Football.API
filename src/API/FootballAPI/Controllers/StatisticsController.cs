@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*
+using Microsoft.AspNetCore.Mvc;
 
 namespace FootballAPI.Controllers
 {
@@ -34,3 +35,4 @@ namespace FootballAPI.Controllers
         }
     }
 }
+*/
