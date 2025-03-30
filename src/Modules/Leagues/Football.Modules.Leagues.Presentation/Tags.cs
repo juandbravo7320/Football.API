@@ -6,4 +6,5 @@ internal static class Tags
     internal const string Players = "players";
     internal const string Referees = "referees";
     internal const string Matches = "matches";
+    internal const string Statistics = "statistics";
 }

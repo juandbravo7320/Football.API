@@ -20,6 +20,7 @@ public class GetMatch : IEndpoint
                 return Results.BadRequest(result.Error);
             return Results.Ok(result.Value);
         })
+        .RequireAuthorization()
         .WithTags(Tags.Matches);
     }
 }

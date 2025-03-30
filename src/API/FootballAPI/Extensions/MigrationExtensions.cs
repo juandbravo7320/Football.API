@@ -1,4 +1,5 @@
 using Football.Modules.Leagues.Infrastructure.Database;
+using Football.Modules.Users.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace FootballAPI.Extensions;
@@ -10,6 +11,7 @@ internal static class MigrationExtensions
         using IServiceScope scope = app.ApplicationServices.CreateScope();
         
         ApplyMigrations<LeaguesDbContext>(scope);
+        ApplyMigrations<UsersDbContext>(scope);
     }
 
     private static void ApplyMigrations<TDbContext>(IServiceScope scope)

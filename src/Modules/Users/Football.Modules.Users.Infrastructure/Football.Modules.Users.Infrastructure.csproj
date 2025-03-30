@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Common\Football.Common.Infrastructure\Football.Common.Infrastructure.csproj" />
+      <ProjectReference Include="..\Football.Modules.Users.Application\Football.Modules.Users.Application.csproj" />
+      <ProjectReference Include="..\Football.Modules.Users.Presentation\Football.Modules.Users.Presentation.csproj" />
+    </ItemGroup>
+
+</Project>

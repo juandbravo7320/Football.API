@@ -22,6 +22,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Modules\Leagues\Football.Modules.Leagues.Infrastructure\Football.Modules.Leagues.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\Modules\Users\Football.Modules.Users.Infrastructure\Football.Modules.Users.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

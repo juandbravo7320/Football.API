@@ -21,6 +21,7 @@ public class UpdateMatch : IEndpoint
             
             return Results.Ok(result.Value);
         })
+        .RequireAuthorization()
         .WithTags(Tags.Matches);
     }
 }

@@ -20,6 +20,7 @@ public class GetPlayers : IEndpoint
                 ? Results.BadRequest(result.Error) 
                 : Results.Ok(result.Value);
         })
+        .RequireAuthorization()
         .WithTags(Tags.Players);
     }
 }

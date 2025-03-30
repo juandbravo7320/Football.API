@@ -12,13 +12,14 @@ public class GetMatches : IEndpoint
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapGet("matches", async (ISender sender) =>
-            {
-                var request = new GetMatchesQuery();
-                var result = await sender.Send(request);
-                if (result.IsFailure)
-                    return Results.BadRequest(result.Error);
-                return Results.Ok(result.Value);
-            })
+        {
+            var request = new GetMatchesQuery();
+            var result = await sender.Send(request);
+            if (result.IsFailure)
+                return Results.BadRequest(result.Error);
+            return Results.Ok(result.Value);
+        })
+        .RequireAuthorization()
         .WithTags(Tags.Matches);
     }
 }
