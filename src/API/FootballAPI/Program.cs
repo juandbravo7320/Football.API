@@ -1,14 +1,18 @@
 using Football.Common.Application;
 using Football.Common.Infrastructure;
 using Football.Common.Presentation.Endpoints;
+using Football.Common.Presentation.Hubs;
 using Football.Modules.Leagues.Infrastructure;
 using Football.Modules.Users.Infrastructure;
 using FootballAPI.Extensions;
+using Hangfire;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration));
+
+builder.Services.AddSignalR();
 
 builder.Services.AddControllers();
 
@@ -51,5 +55,9 @@ app.MapEndpoints();
 app.UseSerilogRequestLogging();
 
 app.UseAuthorization();
+
+app.UseHangfireDashboard();
+
+app.MapHub<MatchHub>("/match-hub");
 
 await app.RunAsync().ConfigureAwait(true);

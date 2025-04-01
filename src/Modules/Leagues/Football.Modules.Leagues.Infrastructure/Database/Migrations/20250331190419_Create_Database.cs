@@ -106,13 +106,13 @@ namespace Football.Modules.Leagues.Infrastructure.Database.Migrations
                 schema: "leagues",
                 columns: table => new
                 {
-                    PlayerId = table.Column<int>(type: "integer", nullable: false),
                     MatchId = table.Column<int>(type: "integer", nullable: false),
+                    PlayerId = table.Column<int>(type: "integer", nullable: false),
                     PlayerType = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MatchPlayer", x => x.PlayerId);
+                    table.PrimaryKey("PK_MatchPlayer", x => new { x.MatchId, x.PlayerId });
                     table.ForeignKey(
                         name: "FK_MatchPlayer_Match_MatchId",
                         column: x => x.MatchId,
@@ -152,6 +152,18 @@ namespace Football.Modules.Leagues.Infrastructure.Database.Migrations
                 schema: "leagues",
                 table: "MatchPlayer",
                 column: "MatchId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MatchPlayer_PlayerId",
+                schema: "leagues",
+                table: "MatchPlayer",
+                column: "PlayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MatchPlayer_PlayerType",
+                schema: "leagues",
+                table: "MatchPlayer",
+                column: "PlayerType");
         }
 
         /// <inheritdoc />

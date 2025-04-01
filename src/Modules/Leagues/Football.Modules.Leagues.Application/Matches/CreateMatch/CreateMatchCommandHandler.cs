@@ -2,6 +2,7 @@ using System.Data.Common;
 using Football.Common.Application.Messaging;
 using Football.Common.Domain;
 using Football.Modules.Leagues.Application.Abstractions.Data;
+using Football.Modules.Leagues.Application.Abstractions.Jobs;
 using Football.Modules.Leagues.Domain.Managers;
 using Football.Modules.Leagues.Domain.Matches;
 using Football.Modules.Leagues.Domain.MatchPlayers;
@@ -13,6 +14,7 @@ namespace Football.Modules.Leagues.Application.Matches.CreateMatch;
 
 public class CreateMatchCommandHandler(
     IUnitOfWork unitOfWork,
+    IJobScheduler jobScheduler,
     IMatchRepository matchRepository,
     IPlayerRepository playerRepository,
     IRefereeRepository refereeRepository,
@@ -55,6 +57,9 @@ public class CreateMatchCommandHandler(
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
         await transaction.CommitAsync(cancellationToken);
+        
+        Console.WriteLine("Create Match Command Finished");
+        jobScheduler.ScheduleMatchAlignmentNotification(match.Id, match.StartsAtUtc);
 
         return Result.Success(match.Id);
     }

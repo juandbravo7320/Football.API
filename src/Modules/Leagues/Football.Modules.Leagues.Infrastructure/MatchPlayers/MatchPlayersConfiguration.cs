@@ -12,9 +12,9 @@ internal sealed class MatchPlayersConfiguration : IEntityTypeConfiguration<Match
         builder.HasKey(x => new { x.MatchId, x.PlayerId });
         builder.Property(x => x.PlayerType).HasConversion<string>().IsRequired();
         
-        builder.HasKey(x => x.PlayerType);
-        builder.HasKey(x => x.MatchId);
-        builder.HasKey(x => x.PlayerId);
+        builder.HasIndex(x => x.PlayerType);
+        builder.HasIndex(x => x.MatchId);
+        builder.HasIndex(x => x.PlayerId);
         
         builder.HasOne(x => x.Player)
             .WithMany(y => y.MatchPlayers)

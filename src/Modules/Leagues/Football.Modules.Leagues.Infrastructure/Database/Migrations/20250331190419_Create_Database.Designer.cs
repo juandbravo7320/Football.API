@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Football.Modules.Leagues.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(LeaguesDbContext))]
-    [Migration("20250329213109_Create_Database")]
+    [Migration("20250331190419_Create_Database")]
     partial class Create_Database
     {
         /// <inheritdoc />
@@ -56,19 +56,23 @@ namespace Football.Modules.Leagues.Infrastructure.Database.Migrations
 
             modelBuilder.Entity("Football.Modules.Leagues.Domain.MatchPlayers.MatchPlayer", b =>
                 {
-                    b.Property<int>("PlayerId")
+                    b.Property<int>("MatchId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("MatchId")
+                    b.Property<int>("PlayerId")
                         .HasColumnType("integer");
 
                     b.Property<string>("PlayerType")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("PlayerId");
+                    b.HasKey("MatchId", "PlayerId");
 
                     b.HasIndex("MatchId");
+
+                    b.HasIndex("PlayerId");
+
+                    b.HasIndex("PlayerType");
 
                     b.ToTable("MatchPlayer", "leagues");
                 });

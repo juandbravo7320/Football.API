@@ -1,13 +1,17 @@
 using Football.Common.Presentation.Endpoints;
 using Football.Modules.Leagues.Application.Abstractions.Data;
+using Football.Modules.Leagues.Application.Abstractions.Jobs;
+using Football.Modules.Leagues.Application.Matches.MatchAlignmentNotification;
 using Football.Modules.Leagues.Domain.Managers;
 using Football.Modules.Leagues.Domain.Matches;
 using Football.Modules.Leagues.Domain.MatchPlayers;
 using Football.Modules.Leagues.Domain.Players;
 using Football.Modules.Leagues.Domain.Referees;
+using Football.Modules.Leagues.Infrastructure.Abstractions;
 using Football.Modules.Leagues.Infrastructure.Database;
 using Football.Modules.Leagues.Infrastructure.Managers;
 using Football.Modules.Leagues.Infrastructure.Matches;
+using Football.Modules.Leagues.Infrastructure.Matches.Jobs;
 using Football.Modules.Leagues.Infrastructure.MatchPlayers;
 using Football.Modules.Leagues.Infrastructure.Players;
 using Football.Modules.Leagues.Infrastructure.Referees;
@@ -33,6 +37,13 @@ public static class LeaguesModule
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddHttpClient<IMatchAlignmentNotificationJob, MatchAlignmentNotificationJob>("FootballExternalAPI", client =>
+        {
+            client.BaseAddress = new Uri("http://interview-api.azurewebsites.net");
+        });
+
+        services.AddScoped<IJobScheduler, JobScheduler>();
+        
         var databaseConnectionString = configuration.GetConnectionString("Database")!;
 
         services.AddDbContext<LeaguesDbContext>((sp, options) =>
