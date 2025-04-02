@@ -10,7 +10,8 @@ public class MatchAlignmentNotificationJob(
     HttpClient httpClient,
     IMatchRepository matchRepository,
     INotificationService matchNotificationService,
-    ILogger<MatchAlignmentNotificationJob> logger) : IMatchAlignmentNotificationJob
+    ILogger<MatchAlignmentNotificationJob> logger) 
+    : IMatchAlignmentNotificationJob
 {
     public async Task ExecuteAsync(int matchId)
     {

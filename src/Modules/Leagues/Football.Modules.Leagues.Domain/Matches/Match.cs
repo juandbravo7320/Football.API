@@ -8,8 +8,8 @@ public sealed class Match
 {
     public int Id { get; set; }
 
-    public int HouseManagerId { get; private set; }
-    public int AwayManagerId { get; private set; }
+    public int HouseManagerId { get; set; }
+    public int AwayManagerId { get; set; }
     public int RefereeId { get; set; }
     public DateTime StartsAtUtc { get; set; }
 
