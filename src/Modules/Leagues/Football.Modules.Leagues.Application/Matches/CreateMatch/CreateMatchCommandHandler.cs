@@ -58,7 +58,6 @@ public class CreateMatchCommandHandler(
         await unitOfWork.SaveChangesAsync(cancellationToken);
         await transaction.CommitAsync(cancellationToken);
         
-        Console.WriteLine("Create Match Command Finished");
         jobScheduler.ScheduleMatchAlignmentNotification(match.Id, match.StartsAtUtc);
 
         return Result.Success(match.Id);
