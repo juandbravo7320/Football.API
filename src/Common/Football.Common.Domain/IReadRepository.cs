@@ -1,8 +1,7 @@
 namespace Football.Common.Domain;
 
-public interface IReadRepository<TEntity>
-    where TEntity : class
+public interface IReadRepository
 {
-    Task<IReadOnlyCollection<TEntity>> QueryAsync(string sql, object request);
-    Task<TEntity?> QuerySingleOrDefaultAsync(string sql, object request);
+    Task<IReadOnlyCollection<TResult>> QueryAsync<TResult>(string sql, object request);
+    Task<TResult?> QuerySingleOrDefaultAsync<TResult>(string sql, object request);
 }

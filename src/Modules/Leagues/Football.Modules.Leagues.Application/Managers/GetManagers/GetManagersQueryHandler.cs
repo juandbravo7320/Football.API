@@ -19,14 +19,8 @@ public class GetManagersQueryHandler(IManagerReadRepository managerReadRepositor
              FROM leagues."Manager"
              """;
 
-        var managers = await managerReadRepository.QueryAsync(sql, request);
+        var managers = await managerReadRepository.QueryAsync<ManagerResponse>(sql, request);
 
-        return managers.Select(m =>
-            new ManagerResponse(
-                m.Id,
-                m.Name,
-                m.YellowCard,
-                m.RedCard))
-            .ToList();
+        return Result.Success(managers);
     }
 }

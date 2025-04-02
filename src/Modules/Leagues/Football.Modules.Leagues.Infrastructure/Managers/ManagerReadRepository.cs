@@ -5,7 +5,7 @@ using Football.Modules.Leagues.Infrastructure.Abstractions;
 namespace Football.Modules.Leagues.Infrastructure.Managers;
 
 public class ManagerReadRepository(IDbConnectionFactory dbConnectionFactory) 
-    : ReadRepository<Manager>(dbConnectionFactory), IManagerReadRepository
+    : ReadRepository(dbConnectionFactory), IManagerReadRepository
 {
     
 }
