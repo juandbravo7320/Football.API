@@ -55,6 +55,8 @@ public static class LeaguesModule
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<LeaguesDbContext>());
 
+        services.AddScoped<IManagerReadRepository, ManagerReadRepository>();
+        
         services.AddScoped<IPlayerRepository, PlayerRepository>();
         services.AddScoped<IManagerRepository, ManagerRepository>();
         services.AddScoped<IMatchRepository, MatchRepository>();
