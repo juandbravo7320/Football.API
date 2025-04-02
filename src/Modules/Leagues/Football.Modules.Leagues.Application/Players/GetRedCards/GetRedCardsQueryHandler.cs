@@ -1,5 +1,3 @@
-using Dapper;
-using Football.Common.Application.Data;
 using Football.Common.Application.Messaging;
 using Football.Common.Domain;
 using Football.Modules.Leagues.Application.Players.GetYellowCards;
@@ -7,13 +5,11 @@ using Football.Modules.Leagues.Domain.Players;
 
 namespace Football.Modules.Leagues.Application.Players.GetRedCards;
 
-public class GetRedCardsQueryHandler(IDbConnectionFactory dbConnectionFactory) 
+public class GetRedCardsQueryHandler(IPlayerReadRepository playerReadRepository) 
     : IQueryHandler<GetRedCardsQuery, RedCardResponse>
 {
     public async Task<Result<RedCardResponse>> Handle(GetRedCardsQuery request, CancellationToken cancellationToken)
-    {
-        await using var connection = await dbConnectionFactory.OpenConnectionAsync();
-        
+    {   
         const string sql = 
             $"""
              SELECT
@@ -22,7 +18,8 @@ public class GetRedCardsQueryHandler(IDbConnectionFactory dbConnectionFactory)
              WHERE "Id" = @PlayerId
              """;
 
-        var redCards = await connection.QuerySingleOrDefaultAsync<RedCardResponse>(sql, new { PlayerId = request.PlayerId });
+        var redCards =
+            await playerReadRepository.QuerySingleOrDefaultAsync<RedCardResponse>(sql, new { PlayerId = request.PlayerId });
 
         if (redCards is null)
             return Result.Failure<RedCardResponse>(

@@ -3,15 +3,14 @@ using Dapper;
 using Football.Common.Application.Data;
 using Football.Common.Application.Messaging;
 using Football.Common.Domain;
+using Football.Modules.Leagues.Domain.Players;
 
 namespace Football.Modules.Leagues.Application.Players.GetPlayers;
 
-public class GetPlayersQueryHandler(IDbConnectionFactory dbConnectionFactory) : IQueryHandler<GetPlayersQuery, IReadOnlyCollection<PlayerResponse>>
+public class GetPlayersQueryHandler(IPlayerReadRepository playerReadRepository) : IQueryHandler<GetPlayersQuery, IReadOnlyCollection<PlayerResponse>>
 {
     public async Task<Result<IReadOnlyCollection<PlayerResponse>>> Handle(GetPlayersQuery request, CancellationToken cancellationToken)
     {
-        await using DbConnection connection = await dbConnectionFactory.OpenConnectionAsync();
-
         const string sql =
             $"""
              SELECT
@@ -23,8 +22,8 @@ public class GetPlayersQueryHandler(IDbConnectionFactory dbConnectionFactory) : 
              FROM leagues."Player"
              """;
 
-        var players = (await connection.QueryAsync<PlayerResponse>(sql, request)).AsList();
+        var players = await playerReadRepository.QueryAsync<PlayerResponse>(sql, request);
 
-        return Result.Success<IReadOnlyCollection<PlayerResponse>>(players);
+        return Result.Success(players);
     }
 }
