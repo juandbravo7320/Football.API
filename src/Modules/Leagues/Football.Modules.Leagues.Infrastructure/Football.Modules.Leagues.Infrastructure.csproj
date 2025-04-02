@@ -7,5 +7,9 @@
     <ItemGroup>
       <Folder Include="Database\Migrations\" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <InternalsVisibleTo Include="Football.Modules.Leagues.IntegrationTests" />
+    </ItemGroup>
 
 </Project>

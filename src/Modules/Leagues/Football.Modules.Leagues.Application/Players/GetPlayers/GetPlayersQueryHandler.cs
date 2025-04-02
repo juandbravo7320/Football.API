@@ -1,6 +1,3 @@
-using System.Data.Common;
-using Dapper;
-using Football.Common.Application.Data;
 using Football.Common.Application.Messaging;
 using Football.Common.Domain;
 using Football.Modules.Leagues.Domain.Players;

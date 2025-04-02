@@ -61,3 +61,5 @@ app.UseHangfireDashboard();
 app.MapHub<MatchHub>("/match-hub");
 
 await app.RunAsync().ConfigureAwait(true);
+
+public partial class Program;
